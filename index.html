@@ -39,20 +39,31 @@
             margin-bottom: 3rem;
         }
 
+        .inputs-row {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
         .input-group {
             background: #ffffff;
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 1.5rem 2rem;
-            margin-bottom: 1.5rem;
-            width: 90%;
-            max-width: 340px;
+            padding: 1rem 0.8rem;
+            width: 160px;
+            min-width: 0;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .input-group input {
-            font-size: 2rem;
-            padding: 0.6rem;
+            font-size: 1.3rem;
+            padding: 0.4rem;
             text-align: center;
             width: 100%;
             border: none;
@@ -63,9 +74,21 @@
 
         .input-label {
             display: block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
             color: #888;
+            line-height: 1.2;
+        }
+        @media (max-width: 600px) {
+            .inputs-row {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+            }
+            .input-group {
+                width: 95vw;
+                max-width: 340px;
+            }
         }
     </style>
 </head>
@@ -77,19 +100,21 @@
         <div id="output-sub">зображень в день</div>
     </div>
 
-    <div class="input-group">
-        <input type="number" id="drawn" min="0" value="260">
-        <div class="input-label">Вже намальовано зображень</div>
-    </div>
+    <div class="inputs-row">
+      <div class="input-group">
+          <input type="number" id="drawn" min="0" value="260">
+          <div class="input-label">Вже намальовано<br>зображень</div>
+      </div>
 
-    <div class="input-group">
-        <input type="number" id="total" min="1" value="365">
-        <div class="input-label">Загальна кількість зображень</div>
-    </div>
+      <div class="input-group">
+          <input type="number" id="total" min="1" value="365">
+          <div class="input-label">Загальна кількість<br>зображень</div>
+      </div>
 
-    <div class="input-group">
-        <input type="date" id="deadline" value="2025-08-31">
-        <div class="input-label">Дата дедлайну</div>
+      <div class="input-group">
+          <input type="date" id="deadline" value="2025-08-31">
+          <div class="input-label">Дата<br>дедлайну</div>
+      </div>
     </div>
 
     <script>
@@ -129,7 +154,7 @@
             el.addEventListener('input', update);
         });
 
-        update();
+        window.addEventListener('DOMContentLoaded', update);
     </script>
 </body>
 </html>
